@@ -5,6 +5,12 @@ plugins:
 provider:
   name: aws
   runtime: nodejs22.x
+  stage: dev
+  region: us-east-1
+  versionFunctions: true
+  deploymentBucket:
+    name: serverless-dev
+
 functions:
   main:
     handler: dist/lambda.handler
