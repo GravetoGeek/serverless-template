@@ -12,12 +12,12 @@ export class AppController {
 
     @Get('say/:pathParams')
     getTest(@Param('pathParams') word: string): object {
-        return {api: 'say',word};
+        return this.appService.getTest(word);
     }
 
     @Get('getCustomer/:pathParams')
     getCustomer(@Param('pathParams') word: string): object {
-        return {api: 'getCustomer',word};
+        return this.appService.getCustomer(word);
     }
 
 }
