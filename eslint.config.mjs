@@ -10,6 +10,7 @@ export default [
     pluginJs.configs.recommended,
     ...tseslint.configs.recommended,
     {
+        ignores: ["**/*.config.js","!**/eslint.config.js","node_modules/**, dist/**"],
         rules: {
             "@typescript-eslint/no-unused-expressions": [
                 "error",
@@ -21,4 +22,10 @@ export default [
             ],
         },
     },
+    {
+        excludes: [
+            "**/test/**",
+            "node_modules/**",
+        ],
+    }
 ];
