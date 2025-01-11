@@ -1,9 +1,10 @@
 import {NestFactory} from '@nestjs/core';
 import {configure as serverlessExpress} from '@vendia/serverless-express';
+import {Callback,Context,Handler} from 'aws-lambda';
 import {AppModule} from './app.module';
 
 let cachedServer;
-export const handler=async (event,context) => {
+export const handler: Handler=async (event: AWSLambda.APIGatewayEvent,context: Context,callback: Callback) => {
     if(!cachedServer) {
         const nestApp=await NestFactory.create(AppModule);
         await nestApp.init();
@@ -11,5 +12,6 @@ export const handler=async (event,context) => {
             app: nestApp.getHttpAdapter().getInstance(),
         });
     }
-    return cachedServer(event,context);
+    // console.log({event,context});
+    return cachedServer(event,context,callback);
 };
